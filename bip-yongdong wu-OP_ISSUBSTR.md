@@ -39,15 +39,24 @@ We list the advantages of `OP_ISSUBSTR` below:
 ### Advantages
 
 1. **Enhanced script functionality and flexibility**
-Developers can process string-related logic directly on the chain without relying on off-chain processing. For example: In a multi-signature wallet, developers may need to verify whether certain transactions contain specific signer information or remarks. With `OP_ISSUBSTR`, you can directly check in the script whether the transaction comment or signature field contains a specific substring.
+  Developers can process string-related logic directly on the chain without relying on off-chain processing. For example: In a multi-signature wallet, developers may need to verify whether certain transactions contain specific signer information or remarks. With `OP_ISSUBSTR`, you can directly check in the script whether the transaction comment or signature field contains a specific substring.
 2. **Support string searching**
-In some application scenarios, developers may need to verify whether certain parts of a string conform to a specific format or contain specific data. For example, check the payee name in the payment transaction against a pre-set value.
+  In some application scenarios, developers may need to verify whether certain parts of a string conform to a specific format or contain specific data. For example, check the payee name in the payment transaction against a pre-set value.
 3. **Convert non-deterministic algorithms to deterministic ones**
-Some signature algorithms or hash functions may produce non-deterministic outputs. Through `OP_ISSUBSTR`, developers can check whether the output contains certain known substrings in the script, thereby converting the output of non-deterministic algorithms into deterministic results. For example, verify whether the hash value contains a specific hexadecimal sequence (such as `0000`) to trigger a certain logic of the contract.
+  Some signature algorithms or hash functions may produce non-deterministic outputs. Through `OP_ISSUBSTR`, developers can check whether the output contains certain known substrings in the script, thereby converting the output of non-deterministic algorithms into deterministic results. For example, verify whether the hash value contains a specific hexadecimal sequence (such as `0000`) to trigger a certain logic of the contract.
 4. **Simplify address verification logic**
-Bitcoin addresses usually start with a specific prefix or suffix. Through `OP_ISSUBSTR`, developers can directly verify whether the address conforms to the expected format in the script. For example, verify whether the transaction target address starts with `bc1` to ensure that the transaction target is a valid Bitcoin address, or detect/defeat "address pollution" attacks.
+  Bitcoin addresses usually start with a specific prefix or suffix. Through `OP_ISSUBSTR`, developers can directly verify whether the address conforms to the expected format in the script. For example, verify whether the transaction target address starts with `bc1` to ensure that the transaction target is a valid Bitcoin address, or detect/defeat "address pollution" attacks.
 5. **Integrate with modern programming languages**
-Modern programming languages widely support string operations. The introduction of `OP_ISSUBSTR` makes Bitcoin scripts more aligned with these languages, lowering the barrier to entry for developers.
+  Modern programming languages widely support string operations. The introduction of `OP_ISSUBSTR` makes Bitcoin scripts more aligned with these languages, lowering the barrier to entry for developers.
+
+### Example
+
+Suppose that a lucky draw game has the rule: if anyone has a  publicKey which includes a special substring "goodluck", he/she will be awarded. The syntax can be as follows.
+
+- LockScript: OP_DUP goodluck OP_ISSUBSTR...
+- UnlockScript: signature publicKey
+
+We believe developers will bring more interesting and valuable applications after introducing OP_ISSUBSTR.
 
 
 ## Reference Implementation
