@@ -51,7 +51,9 @@ We list the advantages of `OP_ISSUBSTR` below:
 
 ### Example
 
-Suppose that a lucky draw game has the rule: if anyone has a  publicKey which includes a special substring "goodluck", he/she will be awarded. The syntax can be as follows.
+Suppose that a lucky draw game has the rule: if anyone has a  publicKey which includes a special substring `goodluck`, he/she will be awarded. In the game, the draw action is performed by the initiator, and `goodlucky`is non-public. This is to prevent players from maliciously generating many temporary public keys to participate in the draw.
+
+The syntax can be as follows.
 
 - LockScript: OP_DUP goodluck OP_ISSUBSTR...
 - UnlockScript: signature publicKey
